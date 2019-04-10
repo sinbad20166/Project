@@ -101,11 +101,11 @@ resource "aws_security_group" "allow_ssh" {
 }
 
 # create key pair resource
-resource "aws_key_pair" "mykey" {
-key_name   = "mykey"
-public_key = "${file("~/.ssh/bal.pub")}"
+#resource "aws_key_pair" "mykey" {
+#key_name   = "mykey"
+#public_key = "${file("~/.ssh/bal.pub")}"
 
-}
+#}
 
 
 ########## Creating Instance ##############
@@ -117,7 +117,7 @@ resource "aws_instance" "my_jenkins" {
    instance_type = "t2.micro"
    subnet_id = "${aws_subnet.public.id}"
    associate_public_ip_address = true
-   key_name = "${aws_key_pair.mykey.key_name}"
+   #key_name = "${aws_key_pair.mykey.key_name}"
    vpc_security_group_ids = ["${aws_security_group.allow_ssh.id}"]
    
    tags {
@@ -141,7 +141,7 @@ resource "aws_instance" "my_jenkins2" {
    instance_type = "t2.micro"
    subnet_id = "${aws_subnet.public.id}"
    associate_public_ip_address = true
-   key_name = "${aws_key_pair.mykey.key_name}"
+   #key_name = "${aws_key_pair.mykey.key_name}"
    vpc_security_group_ids = ["${aws_security_group.allow_ssh.id}"]
 
     tags {
